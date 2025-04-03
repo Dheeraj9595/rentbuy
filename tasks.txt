@@ -1,0 +1,8 @@
+GET	/api/admin/cloths/	List all clothes
+POST	/api/admin/cloths/	Create a new cloth
+GET	/api/admin/cloths/{id}/	Retrieve a cloth item
+PUT	/api/admin/cloths/{id}/	Update a cloth item
+DELETE	/api/admin/cloths/{id}/	Delete a cloth item
+POST	/api/admin/cloths/{id}/approve/	Approve a cloth
+POST	/api/admin/cloths/{id}/reject/	Reject a cloth
+
