@@ -56,6 +56,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "rentbuy.urls"
 
+APPEND_SLASH = False
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -109,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Kolkata"
 
 USE_I18N = True
 
@@ -150,48 +152,63 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),             # Use "Bearer" as the token type in Authorization header
 }
 
+#Logger
 
-#logger
 import os
-
-# Get the base directory
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Define the logs directory
-LOG_DIR = os.path.join(BASE_DIR, 'logs')
-
-# Ensure logs directory exists
-if not os.path.exists(LOG_DIR):
-    os.makedirs(LOG_DIR)  # Create 'logs' directory if it doesn't exist
+import logging
+from logging.handlers import RotatingFileHandler, TimedRotatingFileHandler
 
 LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-
-    'formatters': {
-        'verbose': {
-            'format': '[{levelname}] {asctime} - {name} - {message}',
-            'style': '{',
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
         },
     },
+    "handlers": {
+        # Rotating file handler (Size-based rotation)
+        "file": {
+            "level": "DEBUG",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": os.path.join(BASE_DIR, "logs", "django_debug.log"),  # Log file path
+            "maxBytes": 5 * 1024 * 1024,  # 5MB limit per file
+            "backupCount": 5,  # Keep the last 5 log files
+            "formatter": "verbose",
+        },
 
-    'handlers': {
-        'file': {
-            'level': 'ERROR',
-            'class': 'logging.handlers.RotatingFileHandler',
-            'filename': os.path.join(LOG_DIR, 'errors.log'),
-            'maxBytes': 5 * 1024 * 1024,  # 5MB max size
-            'backupCount': 3,  # Keep last 3 log files
-            'formatter': 'verbose',
+        # Time-based rotation (Daily rotation)
+        "timed_file": {
+            "level": "DEBUG",
+            "class": "logging.handlers.TimedRotatingFileHandler",
+            "filename": os.path.join(BASE_DIR, "logs", "django_daily.log"),
+            "when": "midnight",  # Rotate logs daily
+            "interval": 1,
+            "backupCount": 7,  # Keep logs for the last 7 days
+            "formatter": "verbose",
+        },
+
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
         },
     },
-
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'ERROR',
-            'propagate': True,
+    "loggers": {
+        "django": {
+            "handlers": ["file", "timed_file", "console"],
+            "level": "DEBUG",
+            "propagate": True,
+        },
+        "loginapplication": {
+            "handlers": ["file", "timed_file"],
+            "level": "DEBUG",
+            "propagate": False,
         },
     },
 }
-

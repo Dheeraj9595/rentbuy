@@ -3,7 +3,6 @@ from http.client import responses
 from rest_framework import viewsets, permissions
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from django.utils.timezone import now
 from .models import Cloth
 from admin_app.serializers import ClothSerializer, UserSerializer
 from admin_app.models import User
