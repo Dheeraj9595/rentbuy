@@ -141,15 +141,18 @@ REST_FRAMEWORK = {
     ),
 }
 
-# Configure JWT settings
-from rest_framework_simplejwt.settings import api_settings
+
+from datetime import timedelta
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=3600),  # Set access token expiration to 24 hours
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),   # Refresh token valid for 7 days
-    'ROTATE_REFRESH_TOKENS': True,                # Issue a new refresh token on each refresh request
-    'BLACKLIST_AFTER_ROTATION': True,             # Blacklist old refresh tokens after rotation
-    'AUTH_HEADER_TYPES': ('Bearer',),             # Use "Bearer" as the token type in Authorization header
+    "ACCESS_TOKEN_LIFETIME": timedelta(hours=1),  # Set access token to expire in 1 hour
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),  # Set refresh token expiration (optional)
+    "ROTATE_REFRESH_TOKENS": True,  # Keeps the same refresh token unless changed
+    "BLACKLIST_AFTER_ROTATION": True,  # Blacklist old refresh tokens
+    "ALGORITHM": "HS256",  # Default algorithm
+    "SIGNING_KEY": SECRET_KEY,  # Uses Django's SECRET_KEY
+    "VERIFYING_KEY": None,
+    "AUTH_HEADER_TYPES": ("Bearer",),  # Use Bearer in Authorization header
 }
 
 #Logger
