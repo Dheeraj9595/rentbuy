@@ -6,7 +6,7 @@ from rest_framework.test import APIClient
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from admin_app.models import Cloth
+from admin_app.models import Cloth, Rental, Transaction
 
 User = get_user_model()
 
@@ -128,3 +128,66 @@ def test_cloth_response():
         print("__str__ method matched")
     else:
         print("__str__ method not matched")
+
+
+@pytest.mark.django_db
+def test_rental_model_response():
+    """Test if the __str__ method returns the rental name correctly"""
+    renter = User.objects.create_user(username='testuser2', password='testpassword', role=User.RENTER)
+    cloth = Cloth.objects.create(
+        owner=renter,
+        name="black suit",
+        description="A stylish black suit",
+        size="L",
+        condition="Good",
+        price_per_day=1000,
+        available_from="2025-04-01",
+        available_until="2025-04-10",
+        is_approved=True
+    )
+
+    borrower = User.objects.create_user(username='testuser3', password='testpassword', role=User.BORROWER)
+    rental = Rental.objects.create(
+        cloth=cloth,
+        borrower=borrower,
+        rental_start="2025-05-10",
+        rental_end="2025-05-15",
+        status='Pending',
+        total_price=500
+    )
+    assert str(rental) == f"{borrower.username} renting {cloth.name}"
+    print(f"rental model response is : {borrower.username} renting {cloth.name}")
+
+@pytest.mark.django_db
+def test_transaction_model_response():
+    renter = User.objects.create_user(username='testuser2', password='testpassword', role=User.RENTER)
+    cloth = Cloth.objects.create(
+        owner=renter,
+        name="black suit",
+        description="A stylish black suit",
+        size="L",
+        condition="Good",
+        price_per_day=1000,
+        available_from="2025-04-01",
+        available_until="2025-04-10",
+        is_approved=True
+    )
+
+    borrower = User.objects.create_user(username='testuser3', password='testpassword', role=User.BORROWER)
+    rental = Rental.objects.create(
+        cloth=cloth,
+        borrower=borrower,
+        rental_start="2025-05-10",
+        rental_end="2025-05-15",
+        status='Pending',
+        total_price=1000
+    )
+    transaction = Transaction.objects.create(
+        rental = rental,
+        amount = 1000,
+        payment_date = "2025-05-10",
+        status = "Success"
+    )
+    assert str(transaction) == f"Transaction for {transaction.rental.cloth.name} - {transaction.status}"
+    print(f"Transaction model response: Transaction for {transaction.rental.cloth.name} - {transaction.status}")
+
