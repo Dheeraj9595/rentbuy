@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Rent Buy{% endblock %}
+
+{% block content %}
+<!-- Header Image Section -->
+<link rel="stylesheet" href="{% static 'frontend/css/property_form.css'%}">
+<link rel="stylesheet" href="{% static 'frontend/css/chatbot.css'%}">
+<div class="headerimage">
+    <div class="headeriamge1">
+        <div class="house"></div>
+    </div>
+    <div class="headerimage2">
+        <div class="buying">
+            <a href="#"><img src="{% static 'frontend/images/buyin.jpg' %}" alt="Buying" /></a>
+        </div>
+        <div class="selling">
+            <a href="#"><img src="{% static 'frontend/images/selling.jpg' %}" alt="Selling" /></a>
+        </div>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="content">
+    <div class="innercontent">
+        <div class="leftpannel">
+            <div class="find">
+                <div class="leftpan1"></div>
+                <div class="leftpan2">
+                    <div class="leftmenu">
+                        <ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Floating Chatbot Button -->
+<button class="chatbot-toggle" onclick="toggleChatbot()">💬 Chat</button>
+
+<!-- Chatbot Window -->
+<div class="chatbot-container" id="chatbotContainer">
+    <div class="chatbot-header">
+        <span>Chatbot</span>
+        <button class="close-btn" onclick="toggleChatbot()">✖</button>
+    </div>
+    <div class="box" id="chatBox">
+        <!-- Messages will be dynamically inserted here -->
+    </div>
+    <div class="typing-area">
+        <div class="input-field">
+            <input type="text" id="userMessage" placeholder="Type your message" required>
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'frontend/js/chatbot.js' %}"></script>
+
+{% endblock %}

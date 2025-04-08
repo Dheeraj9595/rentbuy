@@ -1,3 +1,5 @@
+#Cloths
+
 GET	/api/admin/cloths/	List all clothes
 POST	/api/admin/cloths/	Create a new cloth
 GET	/api/admin/cloths/{id}/	Retrieve a cloth item
@@ -6,3 +8,20 @@ DELETE	/api/admin/cloths/{id}/	Delete a cloth item
 POST	/api/admin/cloths/{id}/approve/	Approve a cloth
 POST	/api/admin/cloths/{id}/reject/	Reject a cloth
 
+#Rental
+
+GET	/api/admin/rental/	List all rentals
+POST	/api/admin/rental/	Create a new rental
+GET	/api/admin/rental/{id}/	Retrieve a rental item
+PUT	/api/admin/rental/{id}/	Update a rental item
+DELETE	/api/admin/rental/{id}/	Delete a rental item
+
+#Transaction
+
+GET	/api/admin/rental/	List all clothes
+POST	/api/admin/rental/	Create a new cloth
+GET	/api/admin/rental/{id}/	Retrieve a cloth item
+PUT	/api/admin/rental/{id}/	Update a cloth item
+DELETE	/api/admin/rental/{id}/	Delete a cloth item
+POST	/api/admin/rental/{id}/approve/	Approve a cloth
+POST	/api/admin/rental/{id}/reject/	Reject a cloth

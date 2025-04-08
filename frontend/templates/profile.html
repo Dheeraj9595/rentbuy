@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Real Estate{% endblock %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{% static 'frontend/css/profile.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h2>Profile</h2>
+
+        <div class="input-group username">
+            <input type="text" id="username" class="styled-input">
+        </div>
+
+        <div class="input-group email">
+
+            <input type="email" id="email" class="styled-input">
+        </div>
+
+        <div class="input-group firstname">
+            <input type="text" id="first_name" class="styled-input">
+        </div>
+
+        <div class="input-group lastname">
+            <input type="text" id="last_name" class="styled-input">
+        </div>
+
+        <button onclick="updateProfile()" class="updateprofile">Update Profile</button>
+        <button>
+            <a href="{% url 'changepassword' %}" class="updateprofile">Change Password</a>
+        </button>
+
+        <p id="message"></p>
+    </div>
+        <script src="{% static 'frontend/js/profile.js' %}"></script>
+</body>
+
+{% endblock %}
+</html>

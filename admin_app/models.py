@@ -27,6 +27,15 @@ class User(AbstractUser):
     def is_borrower(self):
         return self.role == self.BORROWER
 
+    def save(self, *args, **kwargs):
+        if self.role == User.ADMIN:
+            self.is_staff = True
+            self.is_superuser = True
+        else:
+            self.is_staff = False
+            self.is_superuser = False
+        super().save(*args, **kwargs)
+
 # Clothing Items listed by Renters
 class Cloth(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'role': 'renter'})

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'frontend/css/property_form.css'%}">
+<div class="main">
+  <div class="headerimage">
+    <div class="headeriamge1">
+      <div class="house"></div>
+    </div>
+    <div class="headerimage2">
+      <div class="buying"><a href="{% url 'buying' %}"><img src="{% static 'frontend/images/buyin.jpg' %}" alt="Buying" /></a></div>
+      <div class="selling"><a href="{% url 'property_form' %}"><img src="{% static 'frontend/images/selling.jpg' %}" alt="Selling" /></a></div>
+    </div>
+  </div>
+  <style>
+    body {
+        background-image: url("{% static 'frontend/images/building2.jpg' %}");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+    }
+</style>
+  <div class="content">
+    <div class="innercontent">
+      <div class="leftpannel">
+        <div class="find">
+          <div class="leftmenu">
+            <ul>
+            
+            </ul>
+          </div>
+        </div>
+      
+      </div>
+      
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

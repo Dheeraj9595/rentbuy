@@ -1,0 +1,235 @@
+body {
+	background-size: cover;
+	background-image: url("../images/background.jpg");
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f4;
+}
+
+.container {
+	max-width: 1200px;
+	margin: auto;
+	padding: 20px;
+}
+
+.header,
+.footer {
+	background-color: #333;
+	color: white;
+	text-align: center;
+	padding: 15px 0;
+}
+
+.header img {
+	width: 229px;
+	height: 36px;
+}
+
+.nav ul {
+	list-style: none;
+	padding: 0;
+}
+
+.nav ul li {
+	display: inline;
+	margin: 0 10px;
+}
+
+.nav ul li a {
+	color: white;
+	text-decoration: none;
+}
+
+.nav ul li a:hover {
+	text-decoration: underline;
+}
+
+form {
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+	max-width: 400px;
+	margin: auto;
+	transform: translateY(-7px);
+
+
+}
+
+label {
+	font-weight: bold;
+	display: block;
+	margin-top: 10px;
+}
+
+input,
+select {
+	width: 100%;
+	padding: 8px;
+	margin-top: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+button {
+	background: #28a745;
+	color: white;
+	padding: 10px;
+	border: none;
+	width: 100%;
+	margin-top: 15px;
+	cursor: pointer;
+	font-size: 16px;
+	border-radius: 5px;
+}
+
+button:hover {
+	background: #218838;
+}
+
+#message {
+	margin-top: 15px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.buying {
+	transform: translateX(950px) translateY(-20px);
+	/* Moves right by 50px */
+}
+
+
+.selling {
+	transform: translateX(950px);
+}
+
+.leftmenu {
+	transform: translateY(-220px);
+}
+
+body::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	/* Adjust opacity for darker/lighter effect */
+	z-index: -1;
+}
+
+.postproperty {
+	transform: translate(455px, -40px);
+	color: rgb(12, 27, 110);
+	font-weight: bold;
+}
+
+.first {
+	transform: translate(892px, 400px);
+}
+
+.previous {
+	transform: translate(906px, 400px);
+}
+
+.next {
+	transform: translate(933px, 400px);
+}
+
+.last {
+	transform: translate(939px, 400px);
+}
+
+.pageof {
+	transform: translate(923px, 401px);
+}
+
+.buyingtable {
+	background-color: #f8f9fa;
+	/* Light gray background */
+	color: #333;
+	/* Dark text color */
+	border: 2px solid #343a40;
+	/* Dark border */
+}
+
+.buyingtable th {
+	background-color: #343a40;
+	/* Dark gray */
+	color: white;
+	/* White text */
+	padding: 10px;
+	text-align: center;
+}
+
+.buyingtable td {
+	background-color: #ffffff;
+	/* White cells */
+	color: #000;
+	/* Black text */
+	padding: 8px;
+}
+
+.buyingtable tr:nth-child(even) {
+	background-color: #e9ecef;
+	/* Light gray alternate row */
+}
+
+/* Change hover effect */
+.buyingtable tbody tr:hover {
+	background-color: #d6d8db;
+}
+
+/* Optional: Pagination Styling */
+.pagination a {
+	background-color: #343a40;
+	color: white;
+	padding: 5px 10px;
+	text-decoration: none;
+	border-radius: 5px;
+	margin: 2px;
+}
+
+.pagination a:hover {
+	background-color: #495057;
+}
+
+.availablepro {
+	color: rgb(250, 250, 250);
+}
+
+.availablepro:hover {
+	color: #44f33e;
+	/* Change to your desired color */
+	transition: color 0.3s ease-in-out;
+	/* Smooth transition effect */
+}
+
+.buyingtable tbody tr:hover {
+	background-color: #d6d8db;
+	/* Light gray background */
+	color: #ff5733;
+	/* Change text color to orange */
+	cursor: pointer;
+	/* Change cursor to pointer */
+}
+
+.buyingtable th:hover {
+	color: #44f33e;
+	/* Change text color to blue */
+}
+
+a:hover {
+	color: #1ead19;
+	/* Change to red on hover */
+	text-decoration: underline;
+	/* Optional: Add underline */
+}
