@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+from admin_app.utils import generate_unique_transaction_id
+
+
 # Custom User Model with Roles
 class User(AbstractUser):
     ADMIN = 'admin'
@@ -75,7 +78,8 @@ class Transaction(models.Model):
         (FAILED, 'Failed'),
         (PENDING, 'Pending'),
     ]
-    
+
+    transaction_id = models.CharField(max_length=14, editable=False, blank=True, null=True)
     rental = models.OneToOneField(Rental, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     payment_date = models.DateTimeField(auto_now_add=True)
@@ -83,6 +87,12 @@ class Transaction(models.Model):
 
     def __str__(self):
         return f"Transaction for {self.rental.cloth.name} - {self.status}"
+
+    def save(self, *args, **kwargs):
+        if not self.transaction_id:
+            self.transaction_id = generate_unique_transaction_id()
+        super().save(*args, **kwargs)
+
 
 # Admin Approval Queue (For approving clothes before they go live)
 class ApprovalQueue(models.Model):
