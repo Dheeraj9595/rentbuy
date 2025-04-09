@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}Real Estate{% endblock %}
+{% block title %}RentBuy{% endblock %}
 {% block content %}
 <html lang="en">
 <head>
@@ -14,20 +14,20 @@
         <h2>Profile</h2>
 
         <div class="input-group username">
-            <input type="text" id="username" class="styled-input">
+            <input type="text" id="username" placeholder="username" class="styled-input">
         </div>
 
         <div class="input-group email">
 
-            <input type="email" id="email" class="styled-input">
+            <input type="email" id="email" placeholder="email" class="styled-input">
         </div>
 
         <div class="input-group firstname">
-            <input type="text" id="first_name" class="styled-input">
+            <input type="text" id="first_name" placeholder="first name" class="styled-input">
         </div>
 
         <div class="input-group lastname">
-            <input type="text" id="last_name" class="styled-input">
+            <input type="text" id="last_name" placeholder="last name" class="styled-input">
         </div>
 
         <button onclick="updateProfile()" class="updateprofile">Update Profile</button>
@@ -35,7 +35,7 @@
             <a href="{% url 'changepassword' %}" class="updateprofile">Change Password</a>
         </button>
 
-        <p id="message"></p>
+        <p class="success" id="message"></p>
     </div>
         <script src="{% static 'frontend/js/profile.js' %}"></script>
 </body>

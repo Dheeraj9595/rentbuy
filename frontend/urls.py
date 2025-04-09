@@ -1,6 +1,7 @@
 from django.urls import path, include
 from .views import logout_view, UserViewset, ProfileView, ProfilePage, forgetpasswordPage, forgotpassword, \
-    changes_password_page, change_password, login_view, signup, SignupView, home, aboutus, rental_home
+    changes_password_page, change_password, login_view, signup, SignupView, home, aboutus, rental_home, \
+    chatbot_response, chatbot_page
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
 
@@ -23,5 +24,9 @@ urlpatterns = [
     path("change-password-page/", changes_password_page, name="changepassword"),
     path("change-password/", change_password, name="changepasswordapi"),
     path("signup/", SignupView.as_view(), name="signup"),
+
+    #chatbot
+    path("chatbot/chat/", chatbot_response, name="chatbot-response"),
+    path("chatbotpage/", chatbot_page, name="chatbotpage"),
 
 ]

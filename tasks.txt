@@ -25,3 +25,7 @@ PUT	/api/admin/rental/{id}/	Update a cloth item
 DELETE	/api/admin/rental/{id}/	Delete a cloth item
 POST	/api/admin/rental/{id}/approve/	Approve a cloth
 POST	/api/admin/rental/{id}/reject/	Reject a cloth
+
+1. profile fix
+2. image background change
+3. renting and buying links active

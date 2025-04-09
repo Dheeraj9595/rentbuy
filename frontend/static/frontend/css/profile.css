@@ -157,3 +157,23 @@ button.updatepassword {
 .passchangemessage{
     transform: translate(7px, 26px);
 }
+
+.success {
+    color: green;
+    font-weight: bold;
+    background-color: black;
+    padding: 0px;
+    border-radius: 4px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    background-color: black;
+    padding: 0px;
+    border-radius: 4px;
+}
+
+
+
+
