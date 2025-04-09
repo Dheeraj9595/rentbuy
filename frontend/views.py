@@ -161,29 +161,29 @@ def changes_password_page(request):
     return render(request, "change_password_page.html")
 
 
-
-
-@login_required
 @csrf_exempt
+@api_view(["POST"])
+@permission_classes([IsAuthenticated])
 def change_password(request):
+    # breakpoint()
     if request.method == "POST":
         try:
             data = json.loads(request.body)
-            old_password = data.get("old_password")
-            new_password = data.get("new_password")
+            user = request.user  # Get logged-in user
+            oldpassword = data.get("oldpassword")
+            newpassword = data.get("newpassword")
 
-            if not old_password or not new_password:
+            if not oldpassword or not newpassword:
                 return JsonResponse(
                     {"detail": "Both old and new passwords are required."}, status=400
                 )
 
-            user = request.user  # Get logged-in user
-            if not check_password(old_password, user.password):
+            if not check_password(oldpassword, user.password):
                 return JsonResponse(
                     {"detail": "Old password is incorrect."}, status=400
                 )
 
-            user.set_password(new_password)  # Securely hash new password
+            user.set_password(newpassword)  # Securely hash new password
             user.save()
 
             return JsonResponse({"detail": "Password updated successfully."})

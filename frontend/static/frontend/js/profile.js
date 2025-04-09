@@ -1,26 +1,40 @@
         const tokenUrl = "http://localhost:8000/api/token/";
-        const username = "dheeraj";           // 🔐 Hardcoded for now
-        const password = "Dheeraj*95";        // 🔐 Be careful in production
         const profileUrl = "http://localhost:8000/profile/"
         const token = getToken()
-        async function getToken() {
+
+        let accessToken = null;
+
+        async function loginUser() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
             try {
-                const response = await fetch(tokenUrl, {
+                const response = await fetch("http://localhost:8000/api/token/", {
                     method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password })
                 });
 
-                if (!response.ok) throw new Error("Token fetch failed");
-
                 const data = await response.json();
-                return data.access;  // JWT access token
+
+                if (response.ok) {
+                    accessToken = data.access;
+                    localStorage.setItem("accessToken", accessToken); // store in localStorage
+                    document.getElementById("login-message").textContent = "Login successful!";
+                    fetchProfile();  // auto-fetch profile
+                } else {
+                    document.getElementById("login-message").textContent = data.detail || "Login failed.";
+                }
             } catch (error) {
-                console.error("Error fetching token:", error);
+                console.error("Login error:", error);
+                document.getElementById("login-message").textContent = "Login error.";
             }
         }
+
+        function getToken() {
+            return localStorage.getItem("accessToken");
+        }
+
         function getCSRFToken() {
             let csrfToken = document.cookie.split('; ').find(row => row.startsWith('csrftoken='));
             return csrfToken ? csrfToken.split('=')[1] : '';

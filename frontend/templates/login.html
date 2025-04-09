@@ -55,12 +55,13 @@
         </div>
       </div>
 
-      <button type="submit">Log in</button>
+      <button onclick="loginUser()" type="submit">Log in</button>
       <button>
         <a href="{% url 'signup' %}" >Sign up</a>
     </button>
       <a href="{% url 'forgetpasswordpage' %}" class="discrete">Forgot password?</a>
     </form>
+    <script src="{% static 'frontend/js/profile.js' %}"></script>
   </div>
 </body>
 </html>
