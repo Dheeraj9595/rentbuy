@@ -26,6 +26,11 @@ DELETE	/api/admin/rental/{id}/	Delete a cloth item
 POST	/api/admin/rental/{id}/approve/	Approve a cloth
 POST	/api/admin/rental/{id}/reject/	Reject a cloth
 
-1. profile fix
+1. profile fix -- done
 2. image background change
 3. renting and buying links active
+4. forget password fix
+5. change password fix -- done
+6. chatbot implimented and prompted -- done
+
+7.take a look of website rentmojo and kuro
