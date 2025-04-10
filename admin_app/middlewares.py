@@ -25,7 +25,7 @@ class RedirectRootMiddleware:
 
     def __call__(self, request):
         # Redirect only the root URL
-        breakpoint()
+        # breakpoint()
         if request.path == '/':
             return redirect('/home/')  # or use reverse() if you prefer named URL
         return self.get_response(request)
