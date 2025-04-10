@@ -30,12 +30,8 @@
             <input type="text" id="last_name" placeholder="last name" class="styled-input">
         </div>
 
-<!--        <div class="input-group role">-->
-<!--            <input type="text" id="role" placeholder="role" class="styled-input">-->
-<!--        </div>-->
-<!--        -->
         <div class="input-group role">
-            <p id="role" class="styled-display">Landlord</p>
+            <p id="role" class="styled-display">{{context.role}}</p>
         </div>
 
         <button onclick="updateProfile()" class="updateprofile">Update Profile</button>

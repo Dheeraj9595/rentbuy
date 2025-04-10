@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
 from django.core.mail import send_mail
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 # Create your views here.
 from django.shortcuts import redirect, render
 from django.utils.decorators import method_decorator
@@ -38,10 +38,10 @@ def get_new_token(request):
 @login_required
 def home(request):
     user = request.user
-    if user.is_borrower():
-        return redirect("property_form")
-    if user.is_renter():
-        return redirect("buying")
+    # if user.is_borrower():
+    #     return redirect("index.html")
+    # if user.is_renter():
+    #     return redirect("index.html")
     return render(request, "index.html")
 
 @login_required
@@ -105,10 +105,14 @@ class ProfileView(generics.RetrieveUpdateAPIView):
     def get_object(self):
         return self.request.user
 
-
 @login_required
 def ProfilePage(request):
-    return render(request, "profile.html")
+    try:
+        current_user = User.objects.get(username=request.user.username)
+        return render(request, "profile.html", {"context": current_user})
+    except Exception as e:
+        return HttpResponse(f"Error: {str(e)}")  # Optional error message
+
 
 def forgetpasswordPage(request):
     return render(request, 'forget_password.html')
