@@ -73,9 +73,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             logger.info(f"User Logged In>>>>>>>>>>>>>>>>>> : username: {user.username} email: {user.email} time: {datetime.now()}")
-            return redirect(
-                "http://localhost:8000/home/"
-            )  # Redirect to home page or dashboard
+            return redirect("home")  # Redirect to home page or dashboard
         else:
             return render(request, "login.html", {"error": "Invalid credentials"})
 
