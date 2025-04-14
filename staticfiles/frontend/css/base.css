@@ -11,3 +11,37 @@ body {
 .footer {
     margin-top: auto;
 }
+
+.hamburger {
+    font-size: 26px;
+    cursor: pointer;
+    color: white;
+    display: none;
+}
+
+@media (max-width: 992px) {
+    .hamburger {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: #212529; /* dark background for mobile */
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        padding: 10px 0;
+        z-index: 1000;
+    }
+
+    .nav-links a {
+        padding: 10px 20px;
+        display: block;
+    }
+
+    .nav-links.show {
+        display: flex !important;
+    }
+}

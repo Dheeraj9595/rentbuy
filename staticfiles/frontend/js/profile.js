@@ -52,6 +52,7 @@
                 document.getElementById("email").value = data.email;
                 document.getElementById("first_name").value = data.first_name || "";
                 document.getElementById("last_name").value = data.last_name || "";
+                document.getElementById("role").value = data.role || "";
             } catch (error) {
                 document.getElementById("message").textContent = "Error fetching profile.";
                 console.error(error);

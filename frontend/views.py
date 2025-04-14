@@ -14,6 +14,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from admin_app.models import User
 from admin_app.serializers import UserSerializer
+from renter.forms import ClothPostForm
 
 logger = logging.getLogger(__name__)
 from datetime import datetime
@@ -260,3 +261,18 @@ from django.shortcuts import render
 
 def chatbot_page(request):
     return render(request, 'chatbot.html')
+
+
+@login_required
+def cloth_form_view(request):
+    if request.method == "POST":
+        # breakpoint()
+        form = ClothPostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({"message": "cloth add post Created Successfully!"}, status=201)
+        else:
+            return JsonResponse({"errors": form.errors}, status=400)
+
+    form = ClothPostForm()
+    return render(request, "cloth_form.html", {"form": form})

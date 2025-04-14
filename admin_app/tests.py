@@ -109,7 +109,7 @@ def test_login(api_client, create_user):
 
 @pytest.mark.django_db
 def test_cloth_response():
-    """Test if the __str__ method returns the cloth name correctly."""
+    """Test if the __str__ method returns the cloth title correctly."""
     renter = User.objects.create_user(username='testuser2', password='testpassword', role=User.RENTER)
 
     cloth = Cloth.objects.create(
@@ -124,7 +124,7 @@ def test_cloth_response():
         is_approved=True
     )
     assert str(cloth) == "Red jacket"
-    if str(cloth) is cloth.name:
+    if str(cloth) is cloth.title:
         print("__str__ method matched")
     else:
         print("__str__ method not matched")
@@ -155,8 +155,8 @@ def test_rental_model_response():
         status='Pending',
         total_price=500
     )
-    assert str(rental) == f"{borrower.username} renting {cloth.name}"
-    print(f"rental model response is : {borrower.username} renting {cloth.name}")
+    assert str(rental) == f"{borrower.username} renting {cloth.title}"
+    print(f"rental model response is : {borrower.username} renting {cloth.title}")
 
 @pytest.mark.django_db
 def test_transaction_model_response():
@@ -188,6 +188,6 @@ def test_transaction_model_response():
         payment_date = "2025-05-10",
         status = "Success"
     )
-    assert str(transaction) == f"Transaction for {transaction.rental.cloth.name} - {transaction.status}"
-    print(f"Transaction model response: Transaction for {transaction.rental.cloth.name} - {transaction.status}")
+    assert str(transaction) == f"Transaction for {transaction.rental.cloth.title} - {transaction.status}"
+    print(f"Transaction model response: Transaction for {transaction.rental.cloth.title} - {transaction.status}")
 

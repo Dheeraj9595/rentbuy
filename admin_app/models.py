@@ -36,7 +36,7 @@ class User(AbstractUser):
 # Clothing Items listed by Renters
 class Cloth(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, limit_choices_to={'role': 'renter'})
-    name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
     description = models.TextField()
     size = models.CharField(max_length=10)  # Example: S, M, L, XL
     condition = models.CharField(max_length=50, choices=[('New', 'New'), ('Good', 'Good'), ('Worn', 'Worn')])
@@ -47,7 +47,7 @@ class Cloth(models.Model):
     is_approved = models.BooleanField(default=False)  # Admin approval
 
     def __str__(self):
-        return self.name
+        return self.title
 
 # Rental Requests
 class Rental(models.Model):
@@ -71,7 +71,7 @@ class Rental(models.Model):
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"{self.borrower.username} renting {self.cloth.name}"
+        return f"{self.borrower.username} renting {self.cloth.title}"
 
 # Payment Transactions
 class Transaction(models.Model):
@@ -92,7 +92,7 @@ class Transaction(models.Model):
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=PENDING)
 
     def __str__(self):
-        return f"Transaction for {self.rental.cloth.name} - {self.status}"
+        return f"Transaction for {self.rental.cloth.title} - {self.status}"
 
     def save(self, *args, **kwargs):
         if not self.transaction_id:
@@ -109,5 +109,5 @@ class ApprovalQueue(models.Model):
     is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Approval Status for {self.cloth.name}"
+        return f"Approval Status for {self.cloth.title}"
 

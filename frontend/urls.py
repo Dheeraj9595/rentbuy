@@ -1,7 +1,9 @@
 from django.urls import path, include
+
+from renter.forms import ClothPostForm
 from .views import logout_view, UserViewset, ProfileView, ProfilePage, forgetpasswordPage, forgotpassword, \
     changes_password_page, change_password, login_view, signup, SignupView, home, aboutus, rental_home, \
-    chatbot_response, chatbot_page
+    chatbot_response, chatbot_page, cloth_form_view
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
 
@@ -28,5 +30,6 @@ urlpatterns = [
     #chatbot
     path("chatbot/chat/", chatbot_response, name="chatbot-response"),
     path("chatbotpage/", chatbot_page, name="chatbotpage"),
+    path("clothpostform/", cloth_form_view, name="clothpostform"),
 
 ]

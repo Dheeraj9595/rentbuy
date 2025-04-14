@@ -174,6 +174,16 @@ button.updatepassword {
     border-radius: 4px;
 }
 
+.styled-display {
+    padding: 8px;
+    background: #000000;
+    border: -3px solid #ccc;
+    border-radius: 32px;
+    color: #ffffff;
+    transform: translate(238px, -260px);
+}
+
+
 
 
 

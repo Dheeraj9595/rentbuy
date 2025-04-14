@@ -1,5 +1,3 @@
-from http.client import responses
-
 from rest_framework import permissions, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -27,7 +25,6 @@ class UserViewSet(viewsets.ModelViewSet):
     filterset_fields = ['role', 'username']
 
 
-
 class ClothViewSet(viewsets.ModelViewSet):
     queryset = Cloth.objects.all().order_by("-id")
     serializer_class = ClothSerializer
@@ -39,7 +36,7 @@ class ClothViewSet(viewsets.ModelViewSet):
         cloth = self.get_object()
         cloth.is_approved = True
         cloth.save()
-        return Response({"message": f"Cloth '{cloth.name}' approved by admin"})
+        return Response({"message": f"Cloth '{cloth.title}' approved by admin"})
 
     # Reject a cloth listing
     @action(detail=True, methods=["post"])
@@ -47,14 +44,14 @@ class ClothViewSet(viewsets.ModelViewSet):
         cloth = self.get_object()
         cloth.is_approved = False
         cloth.save()
-        return Response({"message": f"Cloth '{cloth.name}' rejected by admin"})
+        return Response({"message": f"Cloth '{cloth.title}' rejected by admin"})
 
     @action(detail=True, methods=["post"])
     def hold(self, request, pk=None):
         cloth = self.get_object()
         cloth.is_approved = False
         cloth.save()
-        return Response({"message": f"Cloth '{cloth.name}' put on hold by admin"})
+        return Response({"message": f"Cloth '{cloth.title}' put on hold by admin"})
 
 
 class RentalViewSet(viewsets.ModelViewSet):
