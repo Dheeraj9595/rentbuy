@@ -1,62 +1,85 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>\
 {% load static %}
-{% block title %}Rent Buy{% endblock %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Modern Clothing Store</title>
+  <link rel="stylesheet" href="{% static 'frontend/css/styles.css'%}">
+</head>
+<body>
 
-{% block content %}
-<!-- Header Image Section -->
-<link rel="stylesheet" href="{% static 'frontend/css/property_form.css'%}">
-<link rel="stylesheet" href="{% static 'frontend/css/chatbot.css'%}">
-<div class="headerimage">
-    <div class="headeriamge1">
-        <div class="house"></div>
-    </div>
-    <div class="headerimage2">
-        <div class="buying">
-<!--            <a href="#"><img src="{% static 'frontend/images/buyin.jpg' %}" alt="Buying" /></a>-->
-        </div>
-        <div class="selling">
-<!--            <a href="#"><img src="{% static 'frontend/images/selling.jpg' %}" alt="Selling" /></a>-->
-        </div>
-    </div>
+  <header>
+    <h1>Clothify</h1>
+  </header>
+
+  <!-- Story Circles -->
+  <section class="stories">
+      <div class="story" data-image="https://picsum.photos/id/1011/800/400">
+        <img src="https://picsum.photos/id/1011/80/80" alt="">
+        <p>New</p>
+      </div>
+      <div class="story" data-image="https://picsum.photos/id/1012/800/400">
+        <img src="https://picsum.photos/id/1012/80/80" alt="">
+        <p>Sale</p>
+      </div>
+      <div class="story" data-image="https://picsum.photos/id/1013/800/400">
+        <img src="https://picsum.photos/id/1013/80/80" alt="">
+        <p>Winter</p>
+      </div>
+  </section>
+
+<!-- Story Modal -->
+<div class="story-viewer" id="storyViewer">
+  <span class="close-btn" onclick="closeStory()">×</span>
+  <img id="storyImage" src="" alt="Story Image">
 </div>
 
-<!-- Main Content -->
-<div class="content">
-    <div class="innercontent">
-        <div class="leftpannel">
-            <div class="find">
-                <div class="leftpan1"></div>
-                <div class="leftpan2">
-                    <div class="leftmenu">
-                        <ul>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Floating Chatbot Button -->
-<button class="chatbot-toggle" onclick="toggleChatbot()">💬 Chat</button>
 
-<!-- Chatbot Window -->
-<div class="chatbot-container" id="chatbotContainer">
-    <div class="chatbot-header">
-        <span>Chatbot</span>
-        <button class="close-btn" onclick="toggleChatbot()">✖</button>
-    </div>
-    <div class="box" id="chatBox">
-        <!-- Messages will be dynamically inserted here -->
-    </div>
-    <div class="typing-area">
-        <div class="input-field">
-            <input type="text" id="userMessage" placeholder="Type your message" required>
-            <button onclick="sendMessage()">Send</button>
-        </div>
-    </div>
-</div>
+  <!-- Carousel -->
+  <section class="carousel">
+      <div class="slides">
+        <img src="https://picsum.photos/id/1015/800/400" alt="Cloth 1">
+        <img src="https://picsum.photos/id/1016/800/400" alt="Cloth 2">
+        <img src="https://picsum.photos/id/1018/800/400" alt="Cloth 3">
+      </div>
+  </section>
 
-<script src="{% static 'frontend/js/chatbot.js' %}"></script>
+  <script>
+    const stories = document.querySelectorAll(".story");
+    const viewer = document.getElementById("storyViewer");
+    const storyImg = document.getElementById("storyImage");
 
-{% endblock %}
+    stories.forEach(story => {
+      story.addEventListener("click", () => {
+        const imgUrl = story.getAttribute("data-image");
+        storyImg.src = imgUrl;
+        viewer.classList.add("active");
+
+        // Auto-close after 5 seconds
+        setTimeout(() => {
+          closeStory();
+        }, 5000);
+      });
+    });
+
+    // Click outside image to close
+    viewer.addEventListener("click", (e) => {
+      // Only close if the click was on the background, not the image
+      if (e.target === viewer) {
+        closeStory();
+      }
+    });
+
+    function closeStory() {
+      viewer.classList.remove("active");
+      setTimeout(() => {
+        storyImg.src = "";
+      }, 300);
+    }
+
+</script>
+
+</body>
+</html>
